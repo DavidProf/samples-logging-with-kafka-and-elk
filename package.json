@@ -1,0 +1,35 @@
+{
+    "name": "samples-logging-with-kafka-and-elk",
+    "version": "1.0.0",
+    "description": "a simple sample to test logs with kafka & elk",
+    "main": "src/index.ts",
+    "devDependencies": {
+        "ts-node-dev": "^1.1.8",
+        "typescript": "^4.3.5"
+    },
+    "scripts": {
+        "start:dev": "ts-node-dev --transpile-only src/index.ts",
+        "test": "test"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/DavidProf/samples-logging-with-kafka-and-elk.git"
+    },
+    "keywords": [
+        "kafka",
+        "elasticsearch",
+        "logs",
+        "logging",
+        "elk"
+    ],
+    "author": "David Lima (Xarlyu)",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/DavidProf/samples-logging-with-kafka-and-elk/issues"
+    },
+    "homepage": "https://github.com/DavidProf/samples-logging-with-kafka-and-elk#readme",
+    "dependencies": {
+        "log4js": "^6.3.0",
+        "winston": "^3.3.3"
+    }
+}
