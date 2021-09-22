@@ -14,9 +14,11 @@ services:
                 tag: httpd.access
 
     fluentd:
-        build: '..'
+        build:
+            context: ../..
+            dockerfile: .docker/simple/Dockerfile
         volumes:
-            - ../fluentd/conf:/fluentd/etc
+            - ./fluentd/conf:/fluentd/etc
         links:
             - 'elasticsearch'
         ports:

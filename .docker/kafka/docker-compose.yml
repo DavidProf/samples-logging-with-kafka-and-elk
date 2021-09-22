@@ -28,16 +28,27 @@ services:
             KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
             KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
             KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-    kafdrop:
-        container_name: slwkae-kafdrop
-        image: obsidiandynamics/kafdrop
-        network_mode: host
-        depends_on:
-            - kafka
-        environment:
-            KAFKA_BROKERCONNECT: localhost:9092
-            JVM_OPTS: -Xms32M -Xmx64M
-            SERVER_SERVLET_CONTEXTPATH: /
+    # kafdrop:
+    #     container_name: slwkae-kafdrop
+    #     image: obsidiandynamics/kafdrop
+    #     network_mode: host
+    #     depends_on:
+    #         - kafka
+    #     environment:
+    #         KAFKA_BROKERCONNECT: localhost:9092
+    #         JVM_OPTS: -Xms32M -Xmx64M
+    #         SERVER_SERVLET_CONTEXTPATH: /
+
+    fluentd:
+        context: ../..
+        dockerfile: Dockerfile
+        volumes:
+            - ./fluentd/conf:/fluentd/etc
+        links:
+            - 'elasticsearch'
+        ports:
+            - '24224:24224'
+
     elasticsearch:
         container_name: slwkae-elasticsearch
         image: elasticsearch:7.14.0
@@ -51,6 +62,7 @@ services:
             memlock:
                 soft: -1
                 hard: -1
+
     kibana:
         container_name: slwkae-kibana
         image: kibana:7.14.0
