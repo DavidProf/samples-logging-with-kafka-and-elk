@@ -40,14 +40,16 @@ services:
     #         SERVER_SERVLET_CONTEXTPATH: /
 
     fluentd:
-        context: ../..
-        dockerfile: Dockerfile
+        build:
+            context: ../..
+            dockerfile: .docker/simple/Dockerfile
         volumes:
             - ./fluentd/conf:/fluentd/etc
         links:
             - 'elasticsearch'
         ports:
             - '24224:24224'
+            - '24224:24224/udp'
 
     elasticsearch:
         container_name: slwkae-elasticsearch
